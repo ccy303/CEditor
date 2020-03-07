@@ -20,6 +20,15 @@ export const insertAfter = (targetDom, insertDom) => {
     parent.appendChild(insertDom) : parent.insertBefore(insertDom, targetDom.nextSibling)
 }
 
+export const insertBefore = (targetDom, insertDom) => {
+  let parent = targetDom.parentNode;
+  parent.insertBefore(insertDom, targetDom);
+}
+
+/**
+ * remove a Dom
+ * @param {*} targetDom remove targetDom
+ */
 export const removeNode = (targetDom) => {
   if (!targetDom) return
   let parent = targetDom.parentNode;

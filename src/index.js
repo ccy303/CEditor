@@ -1,5 +1,6 @@
 import * as Util from './util'
 import * as defaultStyle from './defaultStyle.config'
+import './assets/icon/iconfont.css'
 class CEditor {
   set textLength(len) {
     this._textLength = len;
@@ -35,7 +36,6 @@ class CEditor {
     ['blur', 'keyup', 'mouseup'].forEach(type => {
       this.editor.addEventListener(type, (e) => {
         this.textLength = e.target.innerText.replace(/\n/g, '').length
-
       })
     })
   }
@@ -44,7 +44,10 @@ class CEditor {
     this.textLength = 0;
   }
   renderTool(toolList) {
+    let tool = document.createElement('div');
 
+    tool.setAttribute('style', Util.objctToStyle(defaultStyle.tool));
+    Util.insertBefore(this.editor, tool)
   }
   renderTextLen() {
     let textLen = document.createElement('span');
