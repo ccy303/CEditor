@@ -5,3 +5,5 @@ const dom = document.querySelector('#editor')
 const editor = new CEditor(dom);
 editor.init(['align-justify', 'align-left', 'align-right', 'align-center', 'bold', 'underline', 'italic', 'image', 'clean']);
 ```
+## 演示gif
+![](https://github.com/ccy303/CEditor/temp/editor.gif)
