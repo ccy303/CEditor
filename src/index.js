@@ -45,9 +45,22 @@ class CEditor {
   }
   renderTool(toolList) {
     let tool = document.createElement('div');
-
     tool.setAttribute('style', Util.objctToStyle(defaultStyle.tool));
+    tool.setAttribute('contenteditable', false);
     Util.insertBefore(this.editor, tool)
+    if (toolList) {
+      for (let i = 0; i < toolList.length; i++) {
+        let span = document.createElement('span')
+        span.setAttribute('style', Util.objctToStyle(defaultStyle.toolIconSpan))
+        let icon = document.createElement('i');
+        Util.hover(icon, () => { span.style.background = '#e1e1e1' }, () => { span.style.background = 'none' })
+        Util.bindCommand(icon)
+        icon.setAttribute('class', `iconfont icon-editor-${toolList[i]}`);
+        icon.setAttribute('id', toolList[i])
+        span.appendChild(icon)
+        tool.appendChild(span)
+      }
+    }
   }
   renderTextLen() {
     let textLen = document.createElement('span');
@@ -71,7 +84,7 @@ class CEditor {
 if (process.env.NODE_ENV === 'development') {
   let testFun = require('./test');
   let editor = testFun(CEditor);
-  editor.init()
+  editor.init(['align-justify', 'align-left', 'align-right', 'align-center', 'bold', 'underline', 'italic', 'image', 'clean'])
   editor.setStyle({
     'font-size': '14px',
   });
